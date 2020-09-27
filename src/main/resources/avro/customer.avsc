@@ -1,0 +1,9 @@
+{
+     "type": "record",
+     "namespace": "com.ilham.github.avro",
+     "name": "Customer",
+     "fields": [
+       {"name": "id", "type": "int", "doc": "Unique Id of each customer" },
+       {"name": "name", "type": "string", "doc": "Name of customer"}
+     ]
+}

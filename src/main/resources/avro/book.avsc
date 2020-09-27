@@ -1,0 +1,10 @@
+{
+     "type": "record",
+     "namespace": "com.ilham.github.avro",
+     "name": "Book",
+     "fields": [
+       {"name": "id", "type": "int", "doc": "Unique Id of each book" },
+       {"name": "title", "type": "string", "doc": "Title of book"},
+       {"name": "author_id", "type": "int", "doc": "Unique Id of author"}
+     ]
+}

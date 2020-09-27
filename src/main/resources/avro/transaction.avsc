@@ -1,0 +1,10 @@
+{
+     "type": "record",
+     "namespace": "com.ilham.github.avro",
+     "name": "Transaction",
+     "fields": [
+       {"name": "id", "type": "int", "doc": "Unique Id of each transaction" },
+       {"name": "book_id", "type": "int", "doc": "Unique id of each book"},
+       {"name": "customer_id", "type": "int", "doc": "Unique id of customer purchasing book"}
+     ]
+}
