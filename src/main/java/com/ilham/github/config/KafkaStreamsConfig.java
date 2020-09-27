@@ -1,16 +1,11 @@
 package com.ilham.github.config;
 
-import com.ilham.github.avro.Author;
-import com.ilham.github.avro.Book;
-import com.ilham.github.avro.Customer;
-import com.ilham.github.avro.Transaction;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import com.ilham.github.avro.*;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.StreamsConfig;
 
 import java.util.HashMap;
@@ -36,6 +31,7 @@ public class KafkaStreamsConfig {
         properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092");
         properties.setProperty(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.IntegerSerde.class.getName());
         properties.setProperty(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class.getName());
+        properties.setProperty(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG,"100");
         properties.setProperty("schema.registry.url","http://127.0.0.1:8085");
 
         return properties;
@@ -79,5 +75,25 @@ public class KafkaStreamsConfig {
 
         transactionAvroSerde.configure(serdeConfig, false);
         return transactionAvroSerde;
+    }
+
+    public static SpecificAvroSerde<EnrichedBook> getEnrichedBookAvroSerde() {
+        SpecificAvroSerde<EnrichedBook> enrichedBookAvroSerde = new SpecificAvroSerde<>();
+
+        final HashMap<String, String> serdeConfig = new HashMap<>();
+        serdeConfig.put("schema.registry.url","http://127.0.0.1:8085");
+
+        enrichedBookAvroSerde.configure(serdeConfig, false);
+        return enrichedBookAvroSerde;
+    }
+
+    public static SpecificAvroSerde<EnrichedTransaction> getEnrichedTransactionAvroSerde() {
+        SpecificAvroSerde<EnrichedTransaction> enrichedTransactionAvroSerde = new SpecificAvroSerde<>();
+
+        final HashMap<String, String> serdeConfig = new HashMap<>();
+        serdeConfig.put("schema.registry.url","http://127.0.0.1:8085");
+
+        enrichedTransactionAvroSerde.configure(serdeConfig, false);
+        return enrichedTransactionAvroSerde;
     }
 }

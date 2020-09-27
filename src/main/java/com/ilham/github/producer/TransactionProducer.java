@@ -1,6 +1,6 @@
 package com.ilham.github.producer;
 
-import com.ilham.github.avro.Book;
+import com.ilham.github.avro.Transaction;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
@@ -10,24 +10,23 @@ import java.util.concurrent.ExecutionException;
 
 import static com.ilham.github.config.KafkaStreamsConfig.getProducerProperties;
 
-public class BookProducer {
+public class TransactionProducer {
 
-    private static Logger logger = LoggerFactory.getLogger(BookProducer.class);
+    private static Logger logger = LoggerFactory.getLogger(TransactionProducer.class);
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        String topic = "book-example-topic";
+        String topic = "transaction-example-topic";
 
-        Book book = Book.newBuilder()
+        Transaction transaction = Transaction.newBuilder()
                 .setId(2)
-                .setTitle("Harry Potter and the Prisoner of Azkaban")
-                .setAuthorId(1)
+                .setBookId(2)
                 .build();
 
-        KafkaProducer<Integer, Book> producer = new KafkaProducer<>(getProducerProperties());
-        ProducerRecord<Integer,Book> producerRecord = new ProducerRecord<>(topic,book.getId(),book);
+        KafkaProducer<Integer, Transaction> producer = new KafkaProducer<>(getProducerProperties());
+        ProducerRecord<Integer,Transaction> producerRecord = new ProducerRecord<>(topic,transaction.getId(),transaction);
         producer.send(producerRecord).get();
 
-        logger.info("Sent message: " + book);
+        logger.info("Sent message: " + transaction);
 
         producer.flush();
         producer.close();
