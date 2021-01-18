@@ -18,8 +18,8 @@ public class TransactionProducer {
         String topic = "transaction-example-topic";
 
         Transaction transaction = Transaction.newBuilder()
-                .setId(2)
-                .setBookId(2)
+                .setId(1)
+                .setBookId(3)
                 .build();
 
         KafkaProducer<Integer, Transaction> producer = new KafkaProducer<>(getProducerProperties());

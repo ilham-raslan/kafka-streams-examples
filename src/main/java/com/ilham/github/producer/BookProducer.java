@@ -18,8 +18,8 @@ public class BookProducer {
         String topic = "book-example-topic";
 
         Book book = Book.newBuilder()
-                .setId(2)
-                .setTitle("Harry Potter and the Prisoner of Azkaban")
+                .setId(3)
+                .setTitle("Harry Potter and the Chamber of Secrets")
                 .setAuthorId(1)
                 .build();
 

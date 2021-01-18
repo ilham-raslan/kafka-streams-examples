@@ -4,7 +4,6 @@ import com.ilham.github.avro.Author;
 import com.ilham.github.avro.Book;
 import com.ilham.github.avro.EnrichedBook;
 import com.ilham.github.joiner.EnrichedBookJoiner;
-import com.ilham.github.producer.TransactionProducer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.KafkaStreams;
