@@ -28,7 +28,7 @@ public class EnrichedTransactionConsumer {
                 consumer.commitAsync();
             }
         }
-        catch (WakeupException e) {
+        catch (WakeupException ignored) {
 
         }
         finally {
